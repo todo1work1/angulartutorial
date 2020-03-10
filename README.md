@@ -42,3 +42,26 @@ app.component.html
    
    this.pageno = pageno;
   }
+
+  navbar.component.html
+
+  <ul class="nav navbar-nav">
+      <li>
+        <a (click)="setpagenumber(1)">Page1</a>
+      </li>
+      <li>
+          <a (click)="setpagenumber(2)">Page2</a>
+      </li>
+      <li>
+          <a (click)="setpagenumber(3)">Page3</a>
+      </li>
+    </ul>
+
+   page1.component.ts
+    @Input() pageno: number;
+
+    page2.component.ts
+     @Input() pageno: number;
+
+    page3.component.ts
+     @Input() pageno: number;
