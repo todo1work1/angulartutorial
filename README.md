@@ -26,9 +26,13 @@ app.component.html
   app.component.html
   
   <app-navbar [pageno]="pageno" (setpageno)="newpageno($event)"></app-navbar>
+
   <app-page1 [pageno]="pageno" [hidden]="pageno !== 0 && pageno !== 1"></app-page1>
+
   <app-page2 [pageno]="pageno" [hidden]="pageno !== 0 && pageno !== 2"></app-page2>
+
   <app-page3 [pageno]="pageno" [hidden]="pageno !== 0 && pageno !== 3"></app-page3>
+  
   
   navbar.component.ts
   
