@@ -94,3 +94,38 @@ app.component.html
     <button (click)="child.toggleChildBoolAttr()">Toggle Child Attribute</button>
   </div>
   ```
+  ### Use of ElementRef, Renderer, @HostListener, @HostBinding
+  
+  - ElementRef => to access DOM element
+  - Renderer => to work with DOM's element style
+  - @HostListener => function decorator allows you to handle events of the host element 
+  - @HostBinding => function decorator allows you to set the properties of the host element
+
+ ### Creating custom directive
+ ```
+ @Directive({
+    selector: '[appchangecolor]'
+ })
+ 
+ //Use it inside component
+ <div appchangecolor>Content</div>
+ 
+ //property value changes of host element using @HostBinding
+ @HostBinding('style.width') widthmod: string;
+ 
+ //directive constructor for using elementref, renderer
+ constructor(private el: ElementRef, private renderer: Renderer) {}
+ 
+ //handling event on host element in directive using @hostListener
+ @HostListener('mouseover') onMouseMoveFunc() {
+    this.renderer.setElementStyle(this.el.nativeElement, 'color','RED');
+    this.widthmod = "100%";
+ }
+ //handling event on host element in directive using @hostListener
+ @HostListener('mouseleave') onMouseLeaveFunc() {
+    this.renderer.setElementStyle(this.el.nativeElement, 'color','BLACK');
+    this.widthmod = "50%";
+ }
+ 
+ 
+ ```
