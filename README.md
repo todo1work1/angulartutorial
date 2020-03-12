@@ -65,3 +65,32 @@ app.component.html
 
     page3.component.ts
      @Input() pageno: number;
+     
+   ### Use of template for child communication
+   ```
+   child.component.ts
+   childAttribute = 'Child Property';
+  childBoolAttribute = true;
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  childMethod() {
+    alert('Child Attribute value is '+ this.childAttribute);
+  }
+
+  toggleChildBoolAttr() {
+    this.childBoolAttribute = ! this.childBoolAttribute;
+  }
+   ```
+  ```
+  app.component.html
+  <div class="container">
+    <div>Use of template with child</div>
+    <app-child #child></app-child>
+    <h3>{{child.childBoolAttribute}}</h3>
+    <button (click)="child.childMethod()">Show Child Attribute</button>
+    <button (click)="child.toggleChildBoolAttr()">Toggle Child Attribute</button>
+  </div>
+  ```
