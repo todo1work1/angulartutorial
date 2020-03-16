@@ -154,3 +154,30 @@ app.component.html
     </div>
  </nav>
  ```
+### Login Page with bootstrap
+```
+login.component.html
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Login
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="https://placeimg.com/128/128/nature">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" #email>
+                            <input type="password" class="form-control" #password>
+                            <button class="btn btn-primary" (click)="authService.login(email.value, password.value)">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+```
