@@ -234,3 +234,34 @@ get isLoggedIn() {
 header.component.ts
 constructor(private authService: AuthService) {}
 ```
+
+### Use of authguard
+```
+1. ng g g admin/admin
+
+admin.guard.ts
+constructor(private authService:AuthService, private router:Router) {
+}
+canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+        if (this.authService.isLoggedIn) {
+            return true;    
+        } else {
+            return this.router.parseURL('/admin/login')
+        }
+    }
+    
+ admin-routing.module.ts
+ routes: Routes[{
+    path: 'admin',
+    component: ProjectComponent,
+    children: [
+        {
+            path: 'list',
+            component: ProjectListComponent,
+            canActivate: [AdminGuard]
+        }
+    ]
+ }]
+```
