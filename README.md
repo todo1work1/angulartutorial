@@ -181,3 +181,56 @@ login.component.html
     </div>
 </div>
 ```
+### Use of firebase for authentication
+```
+1. copy app firebase config from console.firebase.google.com
+app.module.ts
+
+import { AngularFileModule } from '@angular/fire'
+import { AngularFireAuthModule } from '@angular/fire/auth'
+export
+const firebaseconfig= {}
+imports: [
+    AngularFireModule.initializeApp(firbaseconfig),
+    AngularFireAuthModule
+]
+
+auth.service.ts
+import { Router} from '@angular/router'
+import { User} from 'firebase'
+import { auth} from 'firebase/app'
+import {AngularFireAuth} from '@angular/fire/auth'
+export
+user:User
+constructor(private afauth:AngularFireAuth, private router: Router) {
+    this.afauth.authState.subscribe(user => {
+        if(user) {
+            this.user = user;
+            localStorage.setItem("user", JSON.stringify(user))
+        } else {
+            localStorage.setItem("user", null)
+        }
+    });
+}
+//login method
+async login(email: string, password: string) {
+    try {
+        await this.afauth.auth.signinWithEmailPassword(email, password);
+        this.router.navigate(['admin/list'])
+    } catch (e) {
+        alert(e)
+    }
+}
+async logout() {
+    await this.afauth.auth.signout();
+    localstorage.removeItem("user")
+    this.router.navigate(['/admin/login']);
+}
+get isLoggedIn() {
+    const user = JSON.parse(localstorage.getItem("user"))
+    return user !== nil
+}
+
+header.component.ts
+constructor(private authService: AuthService) {}
+```
