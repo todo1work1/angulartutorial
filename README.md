@@ -129,3 +129,28 @@ app.component.html
  
  
  ```
+ ### Use of Bootstrap
+ ```
+ npm install bootstrap@latest --save
+ angular.json => styles: ['./node_modules/bootstrap/dist/css/bootstrap.min.css']
+ header.component.html=>
+ <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">Header</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/list">List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/list-create">List Create</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/list-update">List Update</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/login">Login</a>
+            </li>
+        </ul>
+    </div>
+ </nav>
+ ```
